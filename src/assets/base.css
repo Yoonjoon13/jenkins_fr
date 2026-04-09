@@ -1,0 +1,44 @@
+:root {
+  --page-bg: #f6efe6;
+  --page-bg-strong: #f0e5d8;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-strong: #ffffff;
+  --line: #d6c5b2;
+  --ink: #1f2933;
+  --ink-soft: #5a6774;
+  --accent: #0f6c7b;
+  --accent-strong: #0a5260;
+  --danger-bg: #fff2f0;
+  --danger-text: #b54738;
+  --shadow: 0 24px 60px rgba(59, 41, 20, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(15, 108, 123, 0.14), transparent 28%),
+    linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-strong) 100%);
+  line-height: 1.6;
+  font-family: 'Pretendard', 'Noto Sans KR', 'Segoe UI', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
