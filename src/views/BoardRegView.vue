@@ -18,7 +18,7 @@ async function submitForm() {
   const content = form.content.trim()
 
   if (!title || !content) {
-    errorMessage.value = 'Please enter both title and content.'
+    errorMessage.value = '제목과 내용을 모두 입력해 주세요.'
     return
   }
 
@@ -30,7 +30,7 @@ async function submitForm() {
     alert(response.message)
     await router.push('/board/list')
   } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : 'Failed to save post.'
+    errorMessage.value = error instanceof Error ? error.message : '게시글 저장에 실패했습니다.'
   } finally {
     isSubmitting.value = false
   }
@@ -41,12 +41,12 @@ async function submitForm() {
   <section class="panel">
     <div class="panel-header">
       <div class="panel-title">
-        <h1>Create Post</h1>
-        <p>Enter a title and content to store a new post in the database.</p>
+        <h1>게시글 등록</h1>
+        <p>제목과 내용을 입력하면 DB에 게시글이 저장됩니다.</p>
       </div>
 
       <button class="secondary-button" type="button" @click="$router.push('/board/list')">
-        Back to List
+        목록으로
       </button>
     </div>
 
@@ -56,21 +56,21 @@ async function submitForm() {
 
     <form class="card form-grid" @submit.prevent="submitForm">
       <div class="field">
-        <label for="title">Title</label>
+        <label for="title">제목</label>
         <input id="title" v-model="form.title" type="text" maxlength="200" />
       </div>
 
       <div class="field">
-        <label for="content">Content</label>
+        <label for="content">내용</label>
         <textarea id="content" v-model="form.content" />
       </div>
 
       <div class="button-row">
         <button class="primary-button" type="submit" :disabled="isSubmitting">
-          {{ isSubmitting ? 'Saving...' : 'Save' }}
+          {{ isSubmitting ? '저장 중...' : '저장' }}
         </button>
         <button class="secondary-button" type="button" :disabled="isSubmitting" @click="$router.push('/board/list')">
-          Cancel
+          취소
         </button>
       </div>
     </form>

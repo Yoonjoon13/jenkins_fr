@@ -21,7 +21,7 @@ async function request(path, init) {
   })
 
   if (!response.ok) {
-    let message = 'Request failed.'
+    let message = '요청을 처리하지 못했습니다.'
     const rawText = await response.text()
 
     try {

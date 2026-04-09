@@ -15,7 +15,7 @@ async function loadPost() {
   const idx = Number(rawIdx)
 
   if (!Number.isInteger(idx) || idx <= 0) {
-    alert('Invalid post id.')
+    alert('올바르지 않은 게시글 번호입니다.')
     await router.replace('/board/list')
     return
   }
@@ -27,12 +27,13 @@ async function loadPost() {
     post.value = await fetchBoardDetail(idx)
   } catch (error) {
     if (error instanceof ApiError && error.status === 404) {
-      alert('Post not found.')
+      alert('게시글을 찾을 수 없습니다.')
       await router.replace('/board/list')
       return
     }
 
-    errorMessage.value = error instanceof Error ? error.message : 'Failed to load post detail.'
+    errorMessage.value =
+      error instanceof Error ? error.message : '게시글 상세 정보를 불러오지 못했습니다.'
   } finally {
     isLoading.value = false
   }
@@ -45,12 +46,12 @@ watch(() => route.params.idx, () => void loadPost(), { immediate: true })
   <section class="panel">
     <div class="panel-header">
       <div class="panel-title">
-        <h1>Board Detail</h1>
-        <p>You can view the full content of the selected post.</p>
+        <h1>게시글 상세</h1>
+        <p>선택한 게시글의 전체 내용을 확인할 수 있습니다.</p>
       </div>
 
       <button class="secondary-button" type="button" @click="$router.push('/board/list')">
-        Back to List
+        목록보기
       </button>
     </div>
 
@@ -58,10 +59,10 @@ watch(() => route.params.idx, () => void loadPost(), { immediate: true })
       {{ errorMessage }}
     </div>
 
-    <div v-if="isLoading" class="card empty-state">Loading post...</div>
+    <div v-if="isLoading" class="card empty-state">게시글을 불러오는 중입니다...</div>
 
     <article v-else-if="post" class="card">
-      <span class="detail-meta">Post #{{ post.idx }}</span>
+      <span class="detail-meta">게시글 번호 {{ post.idx }}</span>
       <h2 class="detail-title">{{ post.title }}</h2>
       <p class="detail-content">{{ post.content }}</p>
     </article>

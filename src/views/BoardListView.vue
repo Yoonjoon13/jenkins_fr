@@ -14,7 +14,7 @@ async function loadPosts() {
   try {
     posts.value = await fetchBoardList()
   } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : 'Failed to load posts.'
+    errorMessage.value = error instanceof Error ? error.message : '게시글 목록을 불러오지 못했습니다.'
   } finally {
     isLoading.value = false
   }
@@ -27,29 +27,29 @@ onMounted(loadPosts)
   <section class="panel">
     <div class="panel-header">
       <div class="panel-title">
-        <h1>Board List</h1>
-        <p>Posts stored in MariaDB are shown in newest-first order.</p>
+        <h1>게시글 목록</h1>
+        <p>MariaDB에 저장된 게시글을 최신순으로 보여줍니다.</p>
       </div>
 
-      <RouterLink class="primary-button" to="/board/reg">Write Post</RouterLink>
+      <RouterLink class="primary-button" to="/board/reg">글쓰기</RouterLink>
     </div>
 
     <div v-if="errorMessage" class="message-box error">
       {{ errorMessage }}
     </div>
 
-    <div v-if="isLoading" class="card empty-state">Loading posts...</div>
+    <div v-if="isLoading" class="card empty-state">게시글을 불러오는 중입니다...</div>
 
     <div v-else-if="posts.length === 0" class="card empty-state">
-      There are no posts yet. Create the first one.
+      아직 등록된 게시글이 없습니다. 첫 글을 작성해 보세요.
     </div>
 
     <div v-else class="card">
       <table class="board-table">
         <thead>
           <tr>
-            <th>Idx</th>
-            <th>Title</th>
+            <th>번호</th>
+            <th>제목</th>
           </tr>
         </thead>
         <tbody>
@@ -64,7 +64,7 @@ onMounted(loadPosts)
     </div>
 
     <div class="button-row">
-      <button class="secondary-button" type="button" @click="loadPosts">Refresh</button>
+      <button class="secondary-button" type="button" @click="loadPosts">새로고침</button>
     </div>
   </section>
 </template>
