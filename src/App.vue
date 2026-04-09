@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
       <nav class="app-nav">
         <RouterLink to="/board/list">목록q</RouterLink>
-        <RouterLink to="/board/reg">글쓰기</RouterLink>
+        <RouterLink to="/board/reg">글쓰test기</RouterLink>
       </nav>
     </header>
 
